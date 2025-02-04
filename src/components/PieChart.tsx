@@ -1,10 +1,8 @@
 "use client"
 
 import { Pie } from "react-chartjs-2"
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js"
-
-import ChartDataLabels from 'chartjs-plugin-datalabels'
-// Register plugins using the static `register` method
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, TooltipItem } from "chart.js"
+import ChartDataLabels, { Context } from "chartjs-plugin-datalabels"
 ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels)
 
 interface PieChartProps {
@@ -29,26 +27,29 @@ export default function PieChart({ data }: PieChartProps) {
       },
       tooltip: {
         callbacks: {
-          label: function(context: { label: string; raw: number; dataset: { data: number[] } }) {
-            const label = context.label || ''
-            const value = context.raw || 0
-            const total = context.dataset.data.reduce((a: number, b: number) => a + b, 0)
-            const percentage = ((value / total) * 100).toFixed(2) + '%'
+          label: function (tooltipItem: TooltipItem<"pie">) {
+            const label = tooltipItem.label || ""
+            const value = (tooltipItem.raw as number) || 0
+            const total = (tooltipItem.dataset.data as number[]).reduce(
+              (a: number, b: number) => a + b,
+              0
+            )
+            const percentage = ((value / total) * 100).toFixed(2) + "%"
             return `${label}: ${value} (${percentage})`
-          }
-        }
+          },
+        },
       },
       datalabels: {
-        formatter: (value: number, context: { dataset: { data: number[] } }) => {
-          const total = context.dataset.data.reduce((a: number, b: number) => a + b, 0)
-          const percentage = ((value / total) * 100).toFixed(2) + '%'
-          return percentage
+        formatter: (value: number, context: Context) => {
+          const dataset = context.dataset.data as number[]
+          const total = dataset.reduce((a, b) => a + b, 0)
+          return ((value / total) * 100).toFixed(2) + "%"
         },
-        color: '#fff',
+        color: "#fff",
         font: {
-          weight: 'bold' as const,
-        }
-      }
+          weight: "bold" as const,
+        },
+      },
     },
   }
 

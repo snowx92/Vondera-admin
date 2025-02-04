@@ -29,7 +29,7 @@ export default function PieChart({ data }: PieChartProps) {
       },
       tooltip: {
         callbacks: {
-          label: function(context: any) {
+          label: function(context: { label: string; raw: number; dataset: { data: number[] } }) {
             const label = context.label || ''
             const value = context.raw || 0
             const total = context.dataset.data.reduce((a: number, b: number) => a + b, 0)
@@ -39,7 +39,7 @@ export default function PieChart({ data }: PieChartProps) {
         }
       },
       datalabels: {
-        formatter: (value: number, context: any) => {
+        formatter: (value: number, context: { dataset: { data: number[] } }) => {
           const total = context.dataset.data.reduce((a: number, b: number) => a + b, 0)
           const percentage = ((value / total) * 100).toFixed(2) + '%'
           return percentage

@@ -14,7 +14,7 @@ interface MerchantModalProps {
 
     storeName: string
 
-    storeLogo: StaticImageData
+    storeLogo: string | StaticImageData
 
     planName: string
 
@@ -30,7 +30,7 @@ interface MerchantModalProps {
 
     planExpirationDate: string
 
-    ownerProfileImage: StaticImageData
+    ownerProfileImage: string | StaticImageData
 
     currentPlan: string
 

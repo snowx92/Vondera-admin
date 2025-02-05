@@ -7,8 +7,10 @@ import { MerchantCard } from "@/components/MerchantCard"
 import { Pagination } from "@/components/Pagination"
 import { MerchantModal } from "@/components/MerchantModal"
 import { Search } from "lucide-react"
+import { Toast } from "@/components/ui/toast"
+import { StaticImageData } from "next/image"
 import logo from "@/lib/logo.png"
-import profile from "@/lib/profile.png"
+import  ProfileImg   from "@/lib/profile.png"
 // Mock data for merchants (updated with website visits and products)
 const mockMerchants = Array.from({ length: 50 }, (_, i) => ({
   id: i + 1,
@@ -21,7 +23,7 @@ const mockMerchants = Array.from({ length: 50 }, (_, i) => ({
   totalEmployees: Math.floor(Math.random() * 50),
   websiteLink: `https://store${i + 1}.com`,
   planExpirationDate: new Date(Date.now() + Math.random() * 10000000000).toISOString().split("T")[0],
-  ownerProfileImage: profile,
+  ownerProfileImage: ProfileImg,
   currentPlan: ["Starter", "Plus", "Pro", "Free"][Math.floor(Math.random() * 4)],
   ordersLimit: 1000,
   currentOrders: Math.floor(Math.random() * 1000),
@@ -33,10 +35,33 @@ const mockMerchants = Array.from({ length: 50 }, (_, i) => ({
 export default function MerchantListingPage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [currentPage, setCurrentPage] = useState(1)
-  const [selectedMerchant, setSelectedMerchant] = useState<typeof mockMerchants[0] | null>(null)
+  interface Merchant {
+    id: number
+    storeName: string
+    storeLogo: string | StaticImageData
+    planName: string
+    createdAt: string
+    storeUsername: string
+    totalOrders: number
+    totalEmployees: number
+    websiteLink: string
+    planExpirationDate: string
+    ownerProfileImage: string | StaticImageData
+    currentPlan: string
+    ordersLimit: number
+    currentOrders: number
+    websiteVisits: number
+    products: number
+    status: string
+  }
+
+  const [selectedMerchant, setSelectedMerchant] = useState<Merchant | null>(null)
   const [sortBy, setSortBy] = useState("date")
   const [filterPlan, setFilterPlan] = useState("all")
   const [filterStatus, setFilterStatus] = useState("all")
+  const [showDeleteToast, setShowDeleteToast] = useState(false)
+  const [showRestoreToast, setShowRestoreToast] = useState(false)
+  const [selectedMerchantId, setSelectedMerchantId] = useState<number | null>(null)
   const itemsPerPage = 15
 
   const filteredAndSortedMerchants = useMemo(() => {
@@ -68,6 +93,32 @@ export default function MerchantListingPage() {
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage,
   )
+
+  const handleSubscribe = (merchantId: number) => {
+    setSelectedMerchant(mockMerchants.find((m) => m.id === merchantId) || null)
+  }
+
+  const handleDelete = (merchantId: number) => {
+    setSelectedMerchantId(merchantId)
+    setShowDeleteToast(true)
+  }
+
+  const handleRestore = (merchantId: number) => {
+    setSelectedMerchantId(merchantId)
+    setShowRestoreToast(true)
+  }
+
+  const confirmDelete = () => {
+    // Implement delete logic here
+    console.log(`Deleting merchant with ID: ${selectedMerchantId}`)
+    setShowDeleteToast(false)
+  }
+
+  const confirmRestore = () => {
+    // Implement restore logic here
+    console.log(`Restoring data for merchant with ID: ${selectedMerchantId}`)
+    setShowRestoreToast(false)
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -120,7 +171,13 @@ export default function MerchantListingPage() {
       </div>
       <div className="space-y-4">
         {currentMerchants.map((merchant) => (
-          <MerchantCard key={merchant.id} {...merchant} onClick={() => setSelectedMerchant(merchant)} />
+          <MerchantCard
+            key={merchant.id}
+            {...merchant}
+            onSubscribe={() => handleSubscribe(merchant.id)}
+            onDelete={() => handleDelete(merchant.id)}
+            onRestore={() => handleRestore(merchant.id)}
+          />
         ))}
       </div>
       <Pagination
@@ -134,6 +191,20 @@ export default function MerchantListingPage() {
           isOpen={!!selectedMerchant}
           onClose={() => setSelectedMerchant(null)}
           merchantData={selectedMerchant}
+        />
+      )}
+      {showDeleteToast && (
+        <Toast
+          message="Are you sure you want to delete the store?"
+          onConfirm={confirmDelete}
+          onCancel={() => setShowDeleteToast(false)}
+        />
+      )}
+      {showRestoreToast && (
+        <Toast
+          message="Are you sure you want to restore the store data?"
+          onConfirm={confirmRestore}
+          onCancel={() => setShowRestoreToast(false)}
         />
       )}
     </div>

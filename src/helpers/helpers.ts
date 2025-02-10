@@ -4,6 +4,7 @@ export const getUniqueColor = (
   opacity: number = 0.8
 ): { backgroundColor: string; textColor: string } => {
   // Handle specific cases for "Completed" and "Failed"
+  if (!value) return { backgroundColor: "#000000", textColor: "#ffffff" };
   if (value === "Completed") {
     return {
       backgroundColor: `rgba(76, 175, 80, ${opacity})`, // Green color with opacity

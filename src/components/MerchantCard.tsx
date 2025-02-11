@@ -104,7 +104,12 @@ export function MerchantCard({
     { icon: LogIn, label: "Login to Store", onClick: () => window.open(websiteLink, "_blank"), color: "text-green-500" },
     { icon: Trash2, label: "Delete", onClick: handleDelete, color: "text-red-500" },
     { icon: RotateCcw, label: "Restore Data", onClick: handleRestore, color: "text-yellow-500" },
-    { icon: BarChart, label: "Analytics", onClick: () => {}, color: "text-purple-500" },
+    {
+      icon: BarChart,
+      label: "Analytics",
+      onClick: () => window.open(`/dashboard/merchants/analytics`, "_blank"),
+      color: "purple",
+    },
   ];
 
   // Get unique colors for the status

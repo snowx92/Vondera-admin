@@ -9,7 +9,7 @@ interface StatCardProps {
   change: number
   icon: LucideIcon
   color: string
-  transactionCount?: string;
+  transactionCount?: string | number;
 }
 
 

@@ -1,5 +1,6 @@
 import { LucideIcon } from 'lucide-react'
-
+import logo from "@/lib/logo.png"
+import  ProfileImg   from "@/lib/profile.png"
 export interface StatData {
   title: string
   value: string
@@ -9,7 +10,7 @@ export interface StatData {
 }
 
 // stats.ts
-import { TrendingUp, CreditCard, RefreshCw, CircleDollarSign ,Store , Package , Shirt , Banknote} from 'lucide-react'
+import { TrendingUp, CreditCard, RefreshCw, CircleDollarSign ,Store , Package , Shirt , Banknote , Eye, Group}  from 'lucide-react'
 
 export const stats = [
   {
@@ -445,3 +446,178 @@ export const chartData = {
   ],
 };
 
+export const mockAnalyticsData = {
+  clientName: "Tech Haven",
+  currency: "USD",
+  country: "United States",
+  createdDate: "2023-01-15",
+  storeLogo: logo,
+  ownerImage: ProfileImg,
+  ownerName: "John Doe",
+  phoneNumber: "+1 (555) 123-4567",
+  address: "123 Tech Street, Silicon Valley, CA 94000",
+  stats: [
+    { title: "Total Sales", value: 1247865, change: 12, icon: TrendingUp, color: "text-green-600" },
+    { title: "Total vpay Transactions", value: 1500, change: 5.75,icon: Banknote, color: "text-green-600", transactionCount: 4 },
+    { title: "Total Orders", value: 1485, change: 2.1, icon: Package, color: "text-green-600" },
+    { title: "Total Products", value: 250, change: -0.4, icon: Shirt, color: "text-green-600" },
+    { title: "Total Customers", value: 150, change: 12, icon: Group, color: "text-green-600", },
+    { title: "Website Vists", value: 14557, change: 12.5, icon: Eye, color: "text-green-600" },
+  ],
+  ordersOverTime: {
+    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    datasets: [
+      {
+        label: "Orders",
+        data: [300, 450, 400, 600, 550, 700],
+        borderColor: "rgb(75, 192, 192)",
+        backgroundColor: "rgba(75, 192, 192, 0.5)",
+        tension: 0.1,
+      },
+    ],
+  },
+  vPayTransactionsOverTime: {
+    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    datasets: [
+      {
+        label: "VPay Transactions",
+        data: [100, 150, 120, 200, 180, 250],
+        borderColor: "rgb(153, 102, 255)",
+        backgroundColor: "rgba(153, 102, 255, 0.5)",
+        tension: 0.1,
+      },
+    ],
+  },
+  ordersPerCountry: {
+    labels: ["USA", "Canada", "UK", "Germany", "France"],
+    datasets: [
+      {
+        label: "Orders",
+        data: [2000, 1500, 1000, 800, 700],
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.5)",
+          "rgba(54, 162, 235, 0.5)",
+          "rgba(255, 206, 86, 0.5)",
+          "rgba(75, 192, 192, 0.5)",
+          "rgba(153, 102, 255, 0.5)",
+        ],
+      },
+    ],
+  },
+  subscriptionPaymentHistory: [
+    { id: "1", date: "2023-06-01", amount: 99.99, status: "Paid" },
+    { id: "2", date: "2023-05-01", amount: 99.99, status: "Paid" },
+    { id: "3", date: "2023-04-01", amount: 99.99, status: "Paid" },
+    { id: "4", date: "2023-03-01", amount: 99.99, status: "Paid" },
+    { id: "5", date: "2023-02-01", amount: 99.99, status: "Paid" },
+  ],
+  latestOrders: [
+    {
+      id: "1",
+      date: "2023-06-15",
+      store: "Store A",
+      amount: 150.0,
+      status: "Completed",
+      paymentProvider: "Stripe",
+      identifier: "ORD123",
+      planName: "Premium Plan",
+      planPeriod: "Monthly",
+      discount: 10,
+    },
+    {
+      id: "2",
+      date: "2023-06-14",
+      store: "Store B",
+      amount: 89.99,
+      status: "Processing",
+      paymentProvider: "PayPal",
+      identifier: "ORD124",
+      planName: "Basic Plan",
+      planPeriod: "Yearly",
+      discount: 0,
+    },
+    {
+      id: "3",
+      date: "2023-06-13",
+      store: "Store C",
+      amount: 200.5,
+      status: "Completed",
+      paymentProvider: "Stripe",
+      identifier: "ORD125",
+      planName: "Premium Plan",
+      planPeriod: "Monthly",
+      discount: 15,
+    },
+    {
+      id: "4",
+      date: "2023-06-12",
+      store: "Store D",
+      amount: 75.0,
+      status: "Shipped",
+      paymentProvider: "PayPal",
+      identifier: "ORD126",
+      planName: "Basic Plan",
+      planPeriod: "Monthly",
+      discount: 5,
+    },
+    {
+      id: "5",
+      date: "2023-06-11",
+      store: "Store E",
+      amount: 120.75,
+      status: "Completed",
+      paymentProvider: "Stripe",
+      identifier: "ORD127",
+      planName: "Premium Plan",
+      planPeriod: "Yearly",
+      discount: 20,
+    },
+  ],
+  latestVPayTransactions: [
+    {
+      id: "1",
+      date: "2023-06-15",
+      store: "Store A",
+      amount: 50.0,
+      status: "Completed",
+      paymentProvider: "VPay",
+      identifier: "VPAY123",
+    },
+    {
+      id: "2",
+      date: "2023-06-14",
+      store: "Store B",
+      amount: 75.5,
+      status: "Completed",
+      paymentProvider: "VPay",
+      identifier: "VPAY124",
+    },
+    {
+      id: "3",
+      date: "2023-06-13",
+      store: "Store C",
+      amount: 100.0,
+      status: "Pending",
+      paymentProvider: "VPay",
+      identifier: "VPAY125",
+    },
+    {
+      id: "4",
+      date: "2023-06-12",
+      store: "Store D",
+      amount: 25.0,
+      status: "Completed",
+      paymentProvider: "VPay",
+      identifier: "VPAY126",
+    },
+    {
+      id: "5",
+      date: "2023-06-11",
+      store: "Store E",
+      amount: 60.25,
+      status: "Completed",
+      paymentProvider: "VPay",
+      identifier: "VPAY127",
+    },
+  ],
+}

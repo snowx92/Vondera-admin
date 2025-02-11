@@ -62,7 +62,7 @@ export default function DashboardPage() {
               className="border-none text-sm focus:outline-none"
             />
           </div>
-          <Button variant="outline" size="sm">
+          <Button>
             <RefreshCw className="h-4 w-4 mr-2" />
             Refresh
           </Button>

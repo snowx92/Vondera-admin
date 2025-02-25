@@ -9,9 +9,9 @@ import LineChart from "@/components/LineChart"
 import BarChart from "@/components/BarChart"
 import DataTable from "@/components/DataTable"
 import StatCard from "@/components/StatCard"
-import { ClientInfo } from "@/components/ClientInfo"
+
 import { PaymentHistory } from "@/components/PaymentHistory"
-import { ProfileComponent } from "@/components/ProfileComponent"
+import StoreInfoPanel from "@/components/StoreInfoPanel"
 import { mockAnalyticsData } from "@/lib/mockData"
 import { motion } from "framer-motion"
 
@@ -20,21 +20,11 @@ export default function MerchantAnalyticsPage() {
   const data = mockAnalyticsData
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Analytics for {data.clientName}</h1>
+    <div>
 
-      <div className="mb-6">
-        <ProfileComponent
-          storeLogo={data.storeLogo}
-          ownerImage={data.ownerImage}
-          ownerName={data.ownerName}
-          phoneNumber={data.phoneNumber}
-          address={data.address}
-        />
-      </div>
+      <StoreInfoPanel />
 
-      <div className="mb-6 flex justify-between items-center">
-        <ClientInfo currency={data.currency} country={data.country} createdDate={data.createdDate} />
+      <div className="mb-6 mt-6 flex justify-between items-center">
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-2 bg-white rounded-md p-2 shadow-sm">
             <Calendar className="h-5 w-5 text-gray-500" />

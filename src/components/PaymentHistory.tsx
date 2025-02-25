@@ -1,14 +1,22 @@
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { getUniqueColor } from "../helpers/helpers";
 interface Payment {
-  id: string
-  date: string
-  amount: number
-  status: string
+  id: string;
+  date: string;
+  amount: number;
+  planName: string;
+  planPeriod: string;
 }
 
 interface PaymentHistoryProps {
-  payments: Payment[]
+  payments: Payment[];
 }
 
 export function PaymentHistory({ payments }: PaymentHistoryProps) {
@@ -17,28 +25,47 @@ export function PaymentHistory({ payments }: PaymentHistoryProps) {
       <TableHeader>
         <TableRow>
           <TableHead>Date</TableHead>
+          <TableHead>Plan</TableHead>
           <TableHead>Amount</TableHead>
-          <TableHead>Status</TableHead>
+          <TableHead>Period</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {payments.map((payment) => (
           <TableRow key={payment.id}>
             <TableCell>{payment.date}</TableCell>
-            <TableCell>${payment.amount.toFixed(2)}</TableCell>
             <TableCell>
               <span
-                className={`px-2 py-1 rounded-full text-xs font-semibold ${
-                  payment.status === "Paid" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
-                }`}
+                style={{
+                  backgroundColor: getUniqueColor(payment.planName)
+                    .backgroundColor,
+                  color: getUniqueColor(payment.planName).textColor,
+                }}
+                className="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full"
               >
-                {payment.status}
+                {payment.planName}
+              </span>
+            </TableCell>
+            <TableCell>
+              <span className="px-3 py-1  bg-fuchsia-300 text-fuchsia-700 inline-flex text-xs leading-5 font-semibold rounded-full">
+                ${payment.amount.toFixed(2)}
+              </span>
+            </TableCell>
+            <TableCell>
+              <span
+                style={{
+                  backgroundColor: getUniqueColor(payment.planPeriod)
+                    .backgroundColor,
+                  color: getUniqueColor(payment.planPeriod).textColor,
+                }}
+                className="px-3 py-1  inline-flex text-xs leading-5 font-semibold rounded-full"
+              >
+                {payment.planPeriod}  
               </span>
             </TableCell>
           </TableRow>
         ))}
       </TableBody>
     </Table>
-  )
+  );
 }
-

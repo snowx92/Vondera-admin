@@ -100,16 +100,11 @@ export function MerchantCard({
   };
 
   const actions = [
-    { icon: ShoppingBag, label: "Subscribe", onClick: onSubscribe, color: "text-blue-500" },
-    { icon: LogIn, label: "Login to Store", onClick: () => window.open(websiteLink, "_blank"), color: "text-green-500" },
-    { icon: Trash2, label: "Delete", onClick: handleDelete, color: "text-red-500" },
-    { icon: RotateCcw, label: "Restore Data", onClick: handleRestore, color: "text-yellow-500" },
-    {
-      icon: BarChart,
-      label: "Analytics",
-      onClick: () => window.open(`/dashboard/merchants/analytics`, "_blank"),
-      color: "purple",
-    },
+    { icon: ShoppingBag, label: "Subscribe", onClick: onSubscribe, color: "blue" },
+    { icon: LogIn, label: "Login to Store", onClick: () => window.open(websiteLink, "_blank"), color: "green" },
+    {icon: BarChart,label: "Analytics",onClick: () => window.open(`/dashboard/merchants/analytics`, "_blank"),color: "purple",},
+    { icon: RotateCcw, label: "Restore Data", onClick: handleRestore, color: "yellow" },
+    { icon: Trash2, label: "Delete", onClick: handleDelete, color: "red" },
   ];
 
   // Get unique colors for the status

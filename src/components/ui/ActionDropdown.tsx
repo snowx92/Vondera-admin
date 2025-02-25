@@ -28,10 +28,12 @@ export function ActionDropdown({ actions }: ActionDropdownProps) {
           <DropdownMenuItem
             key={index}
             onClick={action.onClick}
-            className={`flex items-center space-x-2 cursor-pointer`}
+            className={`flex items-center space-x-2 cursor-pointer  `}
           >
             <action.icon className={`h-4 w-4 text-${action.color}-500`} />
-            <span>{action.label}</span>
+            <span
+              className={`text-${action.color}-500`}
+            >{action.label}</span>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

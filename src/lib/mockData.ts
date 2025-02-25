@@ -10,7 +10,7 @@ export interface StatData {
 }
 
 // stats.ts
-import { TrendingUp, CreditCard, RefreshCw, CircleDollarSign ,Store , Package , Shirt , Banknote , Eye, Group}  from 'lucide-react'
+import { TrendingUp, CreditCard, RefreshCw, CircleDollarSign ,Store , Package , Shirt , Banknote , Eye}  from 'lucide-react'
 
 export const stats = [
   {
@@ -460,8 +460,6 @@ export const mockAnalyticsData = {
     { title: "Total Sales", value: 1247865, change: 12, icon: TrendingUp, color: "text-green-600" },
     { title: "Total vpay Transactions", value: 1500, change: 5.75,icon: Banknote, color: "text-green-600", transactionCount: 4 },
     { title: "Total Orders", value: 1485, change: 2.1, icon: Package, color: "text-green-600" },
-    { title: "Total Products", value: 250, change: -0.4, icon: Shirt, color: "text-green-600" },
-    { title: "Total Customers", value: 150, change: 12, icon: Group, color: "text-green-600", },
     { title: "Website Vists", value: 14557, change: 12.5, icon: Eye, color: "text-green-600" },
   ],
   ordersOverTime: {
@@ -505,11 +503,11 @@ export const mockAnalyticsData = {
     ],
   },
   subscriptionPaymentHistory: [
-    { id: "1", date: "2023-06-01", amount: 99.99, status: "Paid" },
-    { id: "2", date: "2023-05-01", amount: 99.99, status: "Paid" },
-    { id: "3", date: "2023-04-01", amount: 99.99, status: "Paid" },
-    { id: "4", date: "2023-03-01", amount: 99.99, status: "Paid" },
-    { id: "5", date: "2023-02-01", amount: 99.99, status: "Paid" },
+    { id: "1", date: "2023-06-01",planName: "Starter", amount: 300, planPeriod: "Monthly" },
+    { id: "2", date: "2023-05-01",planName: "Starter", amount: 2700, planPeriod: "Yearly" },
+    { id: "3", date: "2023-04-01",planName: "Plus", amount: 1200, planPeriod: "3 Month" },
+    { id: "4", date: "2023-03-01",planName: "Pro", amount: 700, planPeriod: "Monthly" },
+    { id: "5", date: "2023-02-01", planName: "Pro",amount:700, planPeriod: "Yearly"},
   ],
   latestOrders: [
     {

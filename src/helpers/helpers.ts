@@ -25,7 +25,7 @@ export const getUniqueColor = (
 
   // Generate a color using the hash
   const hue = hash % 360; // Ensure hue is within the 0-359 range
-  const backgroundColor = `hsla(${hue}, 70%, 80%, ${opacity})`;
+  const backgroundColor = `hsla(${hue}, 70%, 70%, ${opacity})`;
 
   // Generate a darker shade of the background color for the text
   const textColor = `hsla(${hue}, 70%, 20%, 1)`; // Darker version of the background color
